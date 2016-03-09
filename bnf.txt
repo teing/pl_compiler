@@ -1,0 +1,73 @@
+<program>	=>	<data_segment> <text_segment>
+
+## .data
+<data_segment>	=>	<data_key> | <data_key> <data_st_list>
+<data_st_list>	=>	<data_st> | <data_st> <data_st_list>
+<data_st>	=>	<ascii_st> | <asciiz_st> | <word_st> | <space_st>
+
+## data st
+<ascii_st>	=>	<label> <ascii_key> <str>
+<asciiz_st>	=>	<label> <asciiz_key> <str>
+<word_st>	=>	<label> <word_key> <word_list>
+<word_list>	=>	<word> | <word> , <word_list>
+<space_st>	=>	<label> <space_key> <const>
+
+## .text
+<text_segment>	=>	<text_key> | <text_key> <text_block_list>
+<text_block_list> =>	<text_block> | <text_block> <text_block_list>
+<text_block>	=>	<label> <text_st_list>
+<text_st_list>	=>	<text_st> | <text_st> <text_st_list>
+
+#tet st
+<add_st>	=>	<add_key> <reg> , <reg> , <reg>
+<addi_st>	=>	<addi_key> <reg> , <reg> , <const>
+<sub_st>	=>	<sub_key> <reg> , <reg> , <reg>
+<subi_st>	=>	<subi_key> <reg> , <reg> , <const>
+<mul_st>	=>	<mul_key> <reg> , <reg> , <reg>
+<muli_st>	=>	<muli_key> <reg> , <reg> , <const>
+<div_st>	=>	<div_key> <reg> , <reg> , <reg>
+<divi_st>	=>	<divi_key> <reg> , <reg> , <const>
+
+
+<and_st>	=>	<and_key> <reg> , <reg> , <reg>
+<andi_st>	=>	<andi_key> <reg> , <reg> , <const>
+<or_st>		=>	<or_key> <reg> , <reg> , <reg>
+<ori_st>	=>	<ori_key> <reg> , <reg> , <const>
+<nor_st>	=>	<nor_key> <reg> , <reg> , <reg>
+
+
+<beq_st>	=>	<beq_key> <reg> , <reg> , <addr>
+<bnq_st>	=>	<bnq_key> <reg> , <reg> , <addr>
+<blt_st>	=>	<blt_key> <reg> , <reg> , <addr>
+<blte_st>	=>	<blte_key> <reg> , <reg> , <addr>
+<bgt_st>	=>	<bgt_key> <reg> , <reg> , <addr>
+<bgte_st>	=>	<bgte_key> <reg> , <reg> , <addr>
+
+<jump_st>	=>	<jump_key> <addr>
+<jal_st>	=>	<jal_key> <addr>
+<jr_st>		=>	<jr_key> <addr>
+
+<lb_st>		=>	<lb_key> <reg> , <addr>
+<lw_st>		=>	<lw_key> <reg> , <addr>
+
+<sb_st>		=>	<sb_key> <reg> , <addr>
+<sw_st>		=>	<sw_key> <reg> , <addr>
+
+<li_st>		=>	<li_key> <reg> , <const>
+<move_st>	=>	<move_key> <reg> , <reg>
+
+<la_st>		=>	<la_key> <reg> , <addr>
+<syscall_st>	=>	<syscall_key>
+
+## addr , reg , etc
+<addr>		=>	(<reg>) | <const> ( <reg> ) | <hex_addr>
+<reg>		=>	$ <reg_name>
+
+=============================================================
+<data_key>	=>	.data
+<label>		=>	[A-Za-z9-9]*:
+<str>		=>	"[A-Za-z0-9]*"
+<word>		=>	'[A-Za-z0-9]*'
+<const>		=>	0|[1-9][0-9]*
+
+<reg_name>	=>	zero | at|v[0-1] | a[0-3] | t[0-9] | s[0-7] | k[0-1] | gp | sp | fp | ra
