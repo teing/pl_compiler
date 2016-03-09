@@ -1,0 +1,6 @@
+.data
+
+.text
+main:
+add $i,$2,$3
+li $i,2
