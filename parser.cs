@@ -17,20 +17,21 @@ namespace PL
             }
 
         }
-        private CodeNode root;
-        private CodeNode lastNode;
+
+        private CodeTree tree;
 
         public Parser(List<Token> tokenStream)
         {
             Console.WriteLine("Parser start ...");
             this._tokenStream = tokenStream;
             Function.initFunction();
+            this.tree = new CodeTree();
             program();
             Console.WriteLine("Parser completed");
             if(Compiler.DEBUG)
             {
                 Console.WriteLine("====Code Tree====");
-                CodeNode.printTree(root);
+                tree.printTree();
                 Console.WriteLine("=================");
             }
         }
@@ -64,20 +65,6 @@ namespace PL
             {
                 if(!nextToken())
                     break;
-            }
-        }
-
-        private void insertNode(CodeNode node)
-        {
-            if(root == null)
-            {
-                root = node;
-                lastNode = node;
-            }
-            else
-            {
-                lastNode.setNext(node);
-                lastNode = node;
             }
         }
 
@@ -167,6 +154,7 @@ namespace PL
         {
             if(token == null) return;
             check(Token.TokenType.Label);
+            tree.insertLabel(token.value);
 
             nextToken();    //consume Label
             nextLine();
@@ -220,7 +208,7 @@ namespace PL
 
             //create code node
             CodeNode node = new CodeNode(keyToken, argsToken);
-            insertNode(node);
+            tree.insertNode(node);
         }
 #endregion
 

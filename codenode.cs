@@ -7,7 +7,7 @@ namespace PL
     public class CodeNode
     {
         private Code code;
-        private CodeNode next;
+        public CodeNode next;
 
         public CodeNode(Token keyToken, Token[] argsToken)
         {
@@ -15,9 +15,11 @@ namespace PL
             this.next = null;
         }
 
-        public void setNext(CodeNode next)
+        //empty node for root
+        public CodeNode()
         {
-            this.next = next;
+            this.code = null;
+            this.next = null;
         }
 
         public override string ToString()
@@ -25,13 +27,11 @@ namespace PL
             return code.ToString();
         }
 
-        public static void printTree(CodeNode node)
+        public void printTree()
         {
-            if(node == null) return;
-
-            Console.WriteLine(node);
-            printTree(node.next);
-
+            Console.WriteLine(this.ToString());
+            if(next != null)
+                next.printTree();
         }
     }
 }

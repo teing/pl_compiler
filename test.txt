@@ -5,3 +5,6 @@ main:
 add $i,$2,$3
 li $i,2
 addi $i,2
+
+tree:
+mul $i,$2,$3
