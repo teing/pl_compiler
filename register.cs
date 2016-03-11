@@ -1,49 +1,65 @@
 using System;
 using System.Collections.Generic;
 
-public class Registers
+namespace PL
 {
-	public static Dictionary<string,int> register;
-	
-	public static void Main(string[] args)
+	public class Registers
 	{
-		Console.WriteLine("hello world");
-		Registers regs = new Registers();
-		
-		for(int i=0;i<5;i++)
+		public Dictionary<string,int> regs;
+
+		public Registers()
 		{
-			Console.WriteLine(Registers.reg["zero"]);
+			regs = new Dictionary<string,int>();
+
+			regs.Add("$zero", 0);
+			regs.Add("$at", 0);
+			regs.Add("$a0", 0);
+			regs.Add("$a1", 0);
+			regs.Add("$a2", 0);
+			regs.Add("$a3", 0);
+			regs.Add("$t0", 0);
+			regs.Add("$t1", 0);
+			regs.Add("$t2", 0);
+			regs.Add("$t3", 0);
+			regs.Add("$t4", 0);
+			regs.Add("$t5", 0);
+			regs.Add("$t6", 0);
+			regs.Add("$t7", 0);
+			regs.Add("$s0", 0);
+			regs.Add("$s1", 0);
+			regs.Add("$s2", 0);
+			regs.Add("$s3", 0);
+			regs.Add("$s4", 0);
+			regs.Add("$s5", 0);
+			regs.Add("$s6", 0);
+			regs.Add("$s7", 0);
+			regs.Add("$t8", 0);
+			regs.Add("$t9", 0);
+		}
+
+		public void set(string registerName, int value)
+		{
+			if(regs.ContainsKey(registerName))
+			{
+				regs[registerName] = value;
+			}
+			else
+			{
+				Compiler.Error("Code","register " + registerName + " not found");
+			}
+		}
+
+		public int get(string registerName)
+		{
+			if(regs.ContainsKey(registerName))
+			{
+				return regs[registerName];
+			}
+			else
+			{
+				Compiler.Error("Code","register " + registerName + " not found");
+			}
+			return 0;
 		}
 	}
-	
-	public Registers()
-	{
-		register = new Dictionary<string,int>();
-		
-		register.Add("zero", 0);
-		register.Add("at", 0);
-		register.Add("a0", 0); 
-		register.Add("a1", 0); 
-		register.Add("a2", 0);
-		register.Add("a3", 0);
-		register.Add("t0", 0);
-		register.Add("t1", 0);
-		register.Add("t2", 0);
-		register.Add("t3", 0);
-		register.Add("t4", 0);
-		register.Add("t5", 0);
-		register.Add("t6", 0);
-		register.Add("t7", 0);
-		register.Add("s0", 0);
-		register.Add("s1", 0);
-		register.Add("s2", 0);
-		register.Add("s3", 0);
-		register.Add("s4", 0);
-		register.Add("s5", 0);
-		register.Add("s6", 0);
-		register.Add("s7", 0);
-		register.Add("t8", 0);
-		register.Add("t9", 0);
-	}		
-	
 }

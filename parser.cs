@@ -36,6 +36,11 @@ namespace PL
             }
         }
 
+        public CodeTree getTree()
+        {
+            return tree;
+        }
+
         private bool nextToken()
         {
             //Console.WriteLine("next : " + token);

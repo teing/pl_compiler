@@ -6,7 +6,7 @@ namespace PL
 {
     public class CodeNode
     {
-        private Code code;
+        public Code code;
         public CodeNode next;
 
         public CodeNode(Token keyToken, Token[] argsToken)

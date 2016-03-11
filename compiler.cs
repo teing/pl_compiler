@@ -16,6 +16,7 @@ namespace PL
 			//Lex lex = new Lex("/home/arpple/Desktop/file/prog_lang/test.txt");
 			Lex lex = new Lex(path);
 			Parser parser = new Parser(lex.getTokenStream());
+			Executer exe = new Executer(parser.getTree());
 		}
 
 		private static void parseArgument(string[] args)

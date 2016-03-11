@@ -5,8 +5,8 @@ namespace PL
 {
     public class Code
     {
-        Token key;
-        Token[] args;
+        public Token key;
+        public Token[] args;
 
         public Code(Token key, params Token[] args)
         {
@@ -29,6 +29,11 @@ namespace PL
                 str += arg.value + " ";
             }
             return str;
+        }
+
+        public string arg(int index)
+        {
+            return args[index].value;
         }
     }
 }

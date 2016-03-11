@@ -2,7 +2,7 @@
 
 .text
 main:
-add $i,$2,$3
+add $t1,$t2,$t3
 li $i,2
 addi $i,2
 

@@ -8,7 +8,7 @@ namespace PL
     {
         private Dictionary<string,CodeNode> _labels;
 
-        private CodeNode root;
+        public CodeNode root;
         private CodeNode lastNode;
 
         public CodeTree()
