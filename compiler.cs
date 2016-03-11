@@ -7,21 +7,49 @@ namespace PL
 	public class Compiler
 	{
 		public static bool DEBUG;
+		private static string path;
 
 		public static void Main(string[] args)
 		{
+			DEBUG = false;
+			parseArgument(args);
+			//Lex lex = new Lex("/home/arpple/Desktop/file/prog_lang/test.txt");
+			Lex lex = new Lex(path);
+			Parser parser = new Parser(lex.getTokenStream());
+		}
+
+		private static void parseArgument(string[] args)
+		{
+			bool paramFile = false;
+			Console.WriteLine("P");
 			if(args.Length > 0)
 			{
-				if(args[0] == "-t")
+				for(int i = 0; i < args.Length; i++)
 				{
-					test();
-					return;
+					Console.WriteLine(args[i]);
+					if(args[i] == "-t")
+					{
+						test();
+						System.Environment.Exit(1);
+					}
+					if(args[i] == "-d")
+					{
+						DEBUG = true;
+					}
+					if(args[i] == "-f")
+					{
+						paramFile = true;
+						if(i + 1 < args.Length)
+							path = args[i+1];
+						else
+							Error("Compier","pls enter file name after -f");
+						i++;
+					}
 				}
-				if(args[0] == "-d") DEBUG = true;
+
 			}
-			//Lex lex = new Lex("/home/arpple/Desktop/file/prog_lang/test.txt");
-			Lex lex = new Lex("test.txt");
-			Parser parser = new Parser(lex.getTokenStream());
+			if(!paramFile)	path = "test.txt";
+
 		}
 
 		public static void Error(string header, string msg)

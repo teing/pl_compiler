@@ -18,6 +18,7 @@ namespace PL
 			using (var file = new StreamReader(sourcePath, Encoding.Default))
 			{
 				int lineNumber = 0;
+				if(Compiler.DEBUG) Console.WriteLine("===Matching Regex===");
 				while( (line = file.ReadLine()) != null )
 				{
 					lineNumber++;
@@ -44,13 +45,18 @@ namespace PL
 							this.tokens.Add(new Token(Token.TokenType.Comma_KEY, ",", lineNumber));
 						}
 					}
-
 					//End Line
 					this.tokens.Add(new Token(Token.TokenType.Endl_KEY,"", lineNumber));
 				}
 				file.Close();
+				if(Compiler.DEBUG) Console.WriteLine("");
 				Console.WriteLine("Lexer analyzed completed");
-				if(Compiler.DEBUG) printTokens();
+				if(Compiler.DEBUG)
+				{
+					Console.WriteLine("====Token Stream====");
+					printTokens();
+					Console.WriteLine("====================");
+				}
 			}
 		}
 

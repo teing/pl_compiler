@@ -19,11 +19,6 @@ namespace PL
 			Data_KEY,
 			Text_KEY,
 
-<<<<<<< HEAD
-
-=======
-
->>>>>>> de0aba3ade8512669905a312311131f6d7c866c7
 			Add_KEY,
 			Addi_KEY,
 			Sub_KEY,

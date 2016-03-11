@@ -27,7 +27,12 @@ namespace PL
             Function.initFunction();
             program();
             Console.WriteLine("Parser completed");
-            CodeNode.printTree(root);
+            if(Compiler.DEBUG)
+            {
+                Console.WriteLine("====Code Tree====");
+                CodeNode.printTree(root);
+                Console.WriteLine("=================");
+            }
         }
 
         private bool nextToken()
@@ -59,6 +64,20 @@ namespace PL
             {
                 if(!nextToken())
                     break;
+            }
+        }
+
+        private void insertNode(CodeNode node)
+        {
+            if(root == null)
+            {
+                root = node;
+                lastNode = node;
+            }
+            else
+            {
+                lastNode.setNext(node);
+                lastNode = node;
             }
         }
 
@@ -176,7 +195,7 @@ namespace PL
 
         private void checkFunction(Token.TokenType key)
         {
-            Console.WriteLine(token.lineNumber);
+            //Console.WriteLine(token.lineNumber);
             Function f = Function.get(key);
             if(f == null) Compiler.Error("Parser-text_st","no function " + key);
             check(f.key);
@@ -201,16 +220,7 @@ namespace PL
 
             //create code node
             CodeNode node = new CodeNode(keyToken, argsToken);
-            if(root == null)
-            {
-                root = node;
-                lastNode = root;
-            }
-            else
-            {
-                lastNode.setNext(node);
-                lastNode = node;
-            }
+            insertNode(node);
         }
 #endregion
 
