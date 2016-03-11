@@ -15,8 +15,8 @@ namespace PL
                 else
                     return null;
             }
-        }
 
+        }
         private CodeNode root;
         private CodeNode lastNode;
 

@@ -6,7 +6,6 @@ namespace PL
 {
 	public class Token
 	{
-
 #region database
 		public enum TokenType
 		{
@@ -20,7 +19,11 @@ namespace PL
 			Data_KEY,
 			Text_KEY,
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> de0aba3ade8512669905a312311131f6d7c866c7
 			Add_KEY,
 			Addi_KEY,
 			Sub_KEY,
@@ -119,6 +122,7 @@ namespace PL
 			regEx.Add(TokenType.Label,"^[0-9A-Za-z]+:$");
 			regEx.Add(TokenType.Word,"^\\'[0-9A-Za-z]*\\'$");
 		}
+
 #endregion
 
 		public TokenType type;
