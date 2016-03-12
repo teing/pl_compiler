@@ -35,6 +35,7 @@ namespace PL
 			regs.Add("$s7", 0);
 			regs.Add("$t8", 0);
 			regs.Add("$t9", 0);
+			regs.Add("$ra", 0);
 		}
 
 		public void set(string registerName, int value)

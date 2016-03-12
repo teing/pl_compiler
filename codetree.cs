@@ -26,7 +26,6 @@ namespace PL
 
         public void insertLabel(string labelName)
         {
-            Console.WriteLine("LABEL");
             _labels.Add(labelName,lastNode);
         }
 
@@ -35,6 +34,26 @@ namespace PL
             CodeNode node = null;
             _labels.TryGetValue(labelName, out node);
             return node;
+        }
+
+        public int nextAddress()
+        {
+            return lastNode.address + 1;
+        }
+
+        public CodeNode getNodeFromAddress(int address)
+        {
+            CodeNode searchNode = root;
+            while(searchNode != null)
+            {
+                //Console.WriteLine("match " + address + " with " + searchNode.address);
+                if(searchNode.address == address)
+                {
+                    return searchNode;
+                }
+                searchNode = searchNode.next;
+            }
+            return null;
         }
 
         public void printTree()

@@ -22,17 +22,19 @@ namespace PL
 
         public Parser(List<Token> tokenStream)
         {
-            Console.WriteLine("Parser start ...");
+            Compiler.log("=====================================");
+            Compiler.log("-- Parser --");
             this._tokenStream = tokenStream;
             Function.initFunction();
             this.tree = new CodeTree();
             program();
-            Console.WriteLine("Parser completed");
+
             if(Compiler.DEBUG)
             {
-                Console.WriteLine("====Code Tree====");
+                Compiler.log("Parser completed");
+                Compiler.log("=====================================");
+                Compiler.log("-- Tree --");
                 tree.printTree();
-                Console.WriteLine("=================");
             }
         }
 
@@ -212,7 +214,7 @@ namespace PL
             nextLine();
 
             //create code node
-            CodeNode node = new CodeNode(keyToken, argsToken);
+            CodeNode node = new CodeNode(tree.nextAddress(),keyToken, argsToken);
             tree.insertNode(node);
         }
 #endregion

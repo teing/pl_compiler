@@ -95,7 +95,7 @@ namespace PL
 			regEx.Add(TokenType.Blte_KEY,"^blte$");
 			regEx.Add(TokenType.Bgt_KEY,"^bgt$");
 			regEx.Add(TokenType.Bgte_KEY,"^bgte$");
-			regEx.Add(TokenType.Jump_KEY,"^j$");
+			regEx.Add(TokenType.Jump_KEY,"^jump$");
 			regEx.Add(TokenType.Jal_KEY,"^jal$");
 			regEx.Add(TokenType.Jr_KEY,"^jr$");
 			regEx.Add(TokenType.Lb_KEY,"^lb$");
@@ -136,7 +136,7 @@ namespace PL
 				Regex rx = new Regex(rx_str);
 				if(rx.IsMatch(word))
 				{
-					if(Compiler.DEBUG) Console.WriteLine(word + " with " + rx_str);
+					Compiler.log(word + " with " + rx_str);
 					return new Token(type,word,lineNumber);
 				}
 			}

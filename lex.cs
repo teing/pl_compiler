@@ -11,14 +11,19 @@ namespace PL
 
 		public Lex(string sourcePath)
 		{
-			Console.WriteLine("Lexer start ...");
+			if(Compiler.DEBUG)
+			{
+				Console.WriteLine("=====================================");
+				Console.WriteLine("-- Lex --");
+			}
+
 			this.tokens = new List<Token>();
 
 			string line;
 			using (var file = new StreamReader(sourcePath, Encoding.Default))
 			{
 				int lineNumber = 0;
-				if(Compiler.DEBUG) Console.WriteLine("===Matching Regex===");
+				Compiler.log("-Matching Regex-");
 				while( (line = file.ReadLine()) != null )
 				{
 					lineNumber++;
@@ -49,13 +54,13 @@ namespace PL
 					this.tokens.Add(new Token(Token.TokenType.Endl_KEY,"", lineNumber));
 				}
 				file.Close();
-				if(Compiler.DEBUG) Console.WriteLine("");
-				Console.WriteLine("Lexer analyzed completed");
+
 				if(Compiler.DEBUG)
 				{
-					Console.WriteLine("====Token Stream====");
+					Compiler.log("\nLexer analyzed completed");
+					Compiler.log("=====================================");
+		            Compiler.log("-- Token Stream --");
 					printTokens();
-					Console.WriteLine("====================");
 				}
 			}
 		}

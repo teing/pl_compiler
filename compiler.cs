@@ -22,12 +22,10 @@ namespace PL
 		private static void parseArgument(string[] args)
 		{
 			bool paramFile = false;
-			Console.WriteLine("P");
 			if(args.Length > 0)
 			{
 				for(int i = 0; i < args.Length; i++)
 				{
-					Console.WriteLine(args[i]);
 					if(args[i] == "-t")
 					{
 						test();
@@ -59,10 +57,25 @@ namespace PL
 			System.Environment.Exit(0);
 		}
 
+		public static void log(params object[] args)
+		{
+			if(DEBUG)
+			{
+				string msg = "";
+				foreach(object arg in args)
+				{
+					msg += arg.ToString();
+				}
+				Console.WriteLine(msg);
+			}
+		}
+
 		public static void test()
 		{
-			int[] test = new int[0];
-			Console.WriteLine(test.Length);
+			int x = -2;
+			int y = 2;
+			Console.WriteLine(Convert.ToString(x,2).PadLeft(32,'0'));
+			Console.WriteLine(Convert.ToString(y,2).PadLeft(32,'0'));
 		}
 	}
 }
