@@ -72,10 +72,14 @@ namespace PL
 
 		public static void test()
 		{
-			int x = -2;
-			int y = 2;
-			Console.WriteLine(Convert.ToString(x,2).PadLeft(32,'0'));
-			Console.WriteLine(Convert.ToString(y,2).PadLeft(32,'0'));
+			char[] space = new char[40];
+			space[0] = '0';
+			space[1] = '1';
+			space[2] = '3';
+
+			string s = new string(space);
+
+			Console.WriteLine(s);
 		}
 	}
 }

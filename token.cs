@@ -115,7 +115,6 @@ namespace PL
 			regEx.Add(TokenType.String,"^\\\"[0-9A-Za-z]*\\\"$");
 			regEx.Add(TokenType.Address,"^[0-9A-Za-z]+$|^\\(\\$[0-9A-Za-z]+\\)$");
 			regEx.Add(TokenType.Label,"^[0-9A-Za-z]+:$");
-			regEx.Add(TokenType.Word,"^\\'[0-9A-Za-z]*\\'$");
 		}
 
 #endregion

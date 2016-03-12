@@ -18,6 +18,10 @@ namespace PL
             this.regs = new Registers();
             this.tree = tree;
 
+            //Read Data Segment
+
+
+            //Execute Text Segment
             while(this.current != null)
             {
                 execute(current.code);
@@ -323,7 +327,8 @@ namespace PL
                 Compiler.Error("Runtime","address x" + address + " not found");
             }
         }
-
 #endregion
+
+
     }
 }

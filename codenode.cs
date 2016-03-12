@@ -27,7 +27,7 @@ namespace PL
 
         public override string ToString()
         {
-            return "x" + address.ToString() + " => " + code.ToString();
+            return "Tx" + address.ToString() + " => " + code.ToString();
         }
 
         public void printTree()

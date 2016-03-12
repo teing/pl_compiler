@@ -1,5 +1,7 @@
 .data
-
+dt1: .space
+dt2: .word 1,2
+dt3: .asciiz "Arpple"
 .text
 main:
 addi $t2,$t2,1

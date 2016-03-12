@@ -27,13 +27,17 @@ namespace PL
             this._tokenStream = tokenStream;
             Function.initFunction();
             this.tree = new CodeTree();
+            Data.init();
             program();
 
             if(Compiler.DEBUG)
             {
                 Compiler.log("Parser completed");
                 Compiler.log("=====================================");
-                Compiler.log("-- Tree --");
+                Compiler.log("-- Data --");
+                Data.print();
+                Compiler.log("=====================================");
+                Compiler.log("-- Text --");
                 tree.printTree();
             }
         }
@@ -95,55 +99,65 @@ namespace PL
             if(token.type != Token.TokenType.Text_KEY)
             {
                 check(Token.TokenType.Label);
+                Token label = token;
                 nextToken();
-                data_st();
+                data_st(label);
                 data_st_list();
             }
         }
 
-        private void data_st()
+        private void data_st(Token label)
         {
-            if(token.type == Token.TokenType.Ascii_KEY) ascii_st();
-            else if(token.type == Token.TokenType.Asciiz_KEY) asciiz_st();
-            else if(token.type == Token.TokenType.Word_KEY) word_st();
-            else if(token.type == Token.TokenType.Space_KEY) space_st();
-            else
+            switch(token.type)
             {
-                Compiler.Error("Parser>data_st","wtf, why you give me " + token.ToString() + " in line " + token.lineNumber );
+                case Token.TokenType.Asciiz_KEY : asciiz_st(label); break;
+                case Token.TokenType.Word_KEY : word_st(label); break;
+                case Token.TokenType.Space_KEY : space_st(label); break;
+                default : Compiler.Error("Parser>data_st","wtf, why you give me " + token.ToString() + " in line " + token.lineNumber ); break;
             }
-
         }
 
-        private void ascii_st()
+        private void asciiz_st(Token label)
         {
+            Token key = token;
             nextToken();    //consume key
+
             check(Token.TokenType.String);
+            Token arg = token;
             nextToken();
             nextLine();
+
+            new Data(label,key,arg);
         }
 
-        private void asciiz_st()
+        private void word_st(Token label)
         {
+            Token key = token;
             nextToken();    //consume key
-            check(Token.TokenType.String);
-            nextToken();
-            nextLine();
-        }
 
-        private void word_st()
-        {
-            nextToken();    //consume key
-            check(Token.TokenType.Word);
-            nextToken();
-            nextLine();
-        }
+            List<Token> args_list = new List<Token>();
 
-        private void space_st()
-        {
-            nextToken();    //consume key
             check(Token.TokenType.Const);
+            args_list.Add(token);
             nextToken();
+            while(token.type == Token.TokenType.Comma_KEY)
+            {
+                nextToken(); //consume comma
+                check(Token.TokenType.Const);
+                args_list.Add(token);
+                nextToken(); // consume arg
+            }
+            new Data(label,key,args_list.ToArray());
             nextLine();
+        }
+
+        private void space_st(Token label)
+        {
+            Token key = token;
+            nextToken();    //consume key
+            nextLine();
+
+            new Data(label,key);
         }
 #endregion
 

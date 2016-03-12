@@ -17,7 +17,7 @@
 <text_block>	=>	<label> <text_st_list>
 <text_st_list>	=>	<text_st> | <text_st> <text_st_list>
 
-#tet st
+#text st
 <add_st>	=>	<add_key> <reg> , <reg> , <reg>
 <addi_st>	=>	<addi_key> <reg> , <reg> , <const>
 <sub_st>	=>	<sub_key> <reg> , <reg> , <reg>
