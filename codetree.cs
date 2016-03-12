@@ -30,6 +30,13 @@ namespace PL
             _labels.Add(labelName,lastNode);
         }
 
+        public CodeNode getNodeFromLabel(string labelName)
+        {
+            CodeNode node = null;
+            _labels.TryGetValue(labelName, out node);
+            return node;
+        }
+
         public void printTree()
         {
             foreach(KeyValuePair<string,CodeNode> entry in _labels)

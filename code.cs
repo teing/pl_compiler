@@ -31,7 +31,7 @@ namespace PL
             return str;
         }
 
-        public string arg(int index)
+        public string value(int index)
         {
             return args[index].value;
         }

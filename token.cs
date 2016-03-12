@@ -113,7 +113,7 @@ namespace PL
 			regEx.Add(TokenType.Register,"^\\$[0-9A-Za-z]*$");
 			regEx.Add(TokenType.Const,"^[0-9]+$");
 			regEx.Add(TokenType.String,"^\\\"[0-9A-Za-z]*\\\"$");
-			regEx.Add(TokenType.Address,"^[0-9]+$|^\\(\\$[0-9A-Za-z]+\\)$");
+			regEx.Add(TokenType.Address,"^[0-9A-Za-z]+$|^\\(\\$[0-9A-Za-z]+\\)$");
 			regEx.Add(TokenType.Label,"^[0-9A-Za-z]+:$");
 			regEx.Add(TokenType.Word,"^\\'[0-9A-Za-z]*\\'$");
 		}

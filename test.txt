@@ -2,9 +2,8 @@
 
 .text
 main:
-add $t1,$t2,$t3
-li $i,2
-addi $i,2
+addi $t1,$t1,2
+
+addi $t1,$t1,1
 
 tree:
-mul $i,$2,$3

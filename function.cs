@@ -24,7 +24,7 @@ namespace PL
 			_function = new Dictionary<Token.TokenType,Function>();
 
 			_function.Add(Token.TokenType.Add_KEY,new Function(Token.TokenType.Add_KEY,Token.TokenType.Register,Token.TokenType.Register,Token.TokenType.Register));
-			_function.Add(Token.TokenType.Addi_KEY,new Function(Token.TokenType.Addi_KEY,Token.TokenType.Register,Token.TokenType.Const));
+			_function.Add(Token.TokenType.Addi_KEY,new Function(Token.TokenType.Addi_KEY,Token.TokenType.Register,Token.TokenType.Register,Token.TokenType.Const));
 			_function.Add(Token.TokenType.Sub_KEY,new Function(Token.TokenType.Sub_KEY,Token.TokenType.Register,Token.TokenType.Register,Token.TokenType.Register));
 			_function.Add(Token.TokenType.Subi__KEY,new Function(Token.TokenType.Subi__KEY,Token.TokenType.Register,Token.TokenType.Register,Token.TokenType.Const));
 			_function.Add(Token.TokenType.Mul_KEY,new Function(Token.TokenType.Mul_KEY,Token.TokenType.Register,Token.TokenType.Register,Token.TokenType.Register));
