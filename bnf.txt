@@ -6,11 +6,10 @@
 <data_st>	=>	<ascii_st> | <asciiz_st> | <word_st> | <space_st>
 
 ## data st
-<ascii_st>	=>	<label> <ascii_key> <str>
 <asciiz_st>	=>	<label> <asciiz_key> <str>
 <word_st>	=>	<label> <word_key> <word_list>
-<word_list>	=>	<word> | <word> , <word_list>
-<space_st>	=>	<label> <space_key> <const>
+<word_list>	=>	<const> | <const> , <word_list>
+<space_st>	=>	<label> <space_key>
 
 ## .text
 <text_segment>	=>	<text_key> | <text_key> <text_block_list>
